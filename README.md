@@ -11,7 +11,12 @@ pyinstaller --clean pywebview.py --hidden-import "clr" --add-data "/c/Users/just
 This worked 
 
 ```
-pyinstaller --clean pywebview.py --hidden-import "clr"  --noconsole
+pyinstaller --clean pywebview.py --hidden-import "clr" --add-data "WebBrowserInterop.x86.dll;."  --noconsole
 ```
 
-after making [this change](https://github.com/r0x0r/pywebview/issues/346#issuecomment-513567220) (was finicky, had to open the file in vscode from command prompt. editing in vscode bash wasn't having any effect...). Also 
+after making [this change](https://github.com/r0x0r/pywebview/issues/346#issuecomment-513567220) (was finicky, had to open the file in vscode from command prompt. editing in vscode bash wasn't having any effect...).
+
+After this, I was able to do just. (Leaving the earlier note in just in case.)
+```
+pyinstaller -F pywebview.py
+```
