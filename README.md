@@ -22,10 +22,14 @@ pyinstaller desktop.spec
 # pull docker container that can builds pyinstaller binaries for windows
 docker pull cdrx/pyinstaller-windows
 # build the binary inside ^^ docker container
-docker run -v "$(pwd):/src/" cdrx/pyinstaller-windows
+docker run -v "$(pwd):/src/" --entrypoint /bin/sh cdrx/pyinstaller-windows -c "rm combined.spec enumerate.spec && /entrypoint.sh"
 ```
 
-outputs to `dist/desktop.exe`
+outputs to `dist/windows/desktop.exe`. [Don't yet know how to specify which .spec to use](https://github.com/cdrx/docker-pyinstaller/issues/63), so I tell the docker conatiner to delete the other ones before starting. 
+
+## To build for Mac:
+
+TODO
 
 ## enumerate
 
@@ -41,8 +45,14 @@ pyinstaller enumerate.spec
 ### Windows:
 
 ```
-docker run -v "$(pwd):/src/" cdrx/pyinstaller-windows
+docker run -v "$(pwd):/src/" --entrypoint /bin/sh cdrx/pyinstaller-windows -c "rm combined.spec desktop.spec && /entrypoint.sh"
 ```
+
+Outputs to `dist/windows/enumerate.exe`
+
+### Mac:
+
+TODO
 
 ## combined
 
@@ -58,5 +68,11 @@ pyinstaller combined.spec
 ### Windows:
 
 ```
-docker run -v "$(pwd):/src/" cdrx/pyinstaller-windows
+docker run -v "$(pwd):/src/" --entrypoint /bin/sh cdrx/pyinstaller-windows -c "rm enumerate.spec desktop.spec && /entrypoint.sh"
 ```
+
+Outputs to `dist/windows/combined.exe`
+
+### Mac:
+
+TODO
