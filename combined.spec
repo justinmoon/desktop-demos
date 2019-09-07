@@ -7,10 +7,13 @@ block_cipher = None
 
 binaries = []
 if platform.system() == 'Windows':
+    # path that hwi uses (build copies dll here, i just include it at base of repo)
     #binaries = [("c:/python3/libusb-1.0.dll", ".")]
     binaries = [("libusb-1.0.dll", ".")]
 elif platform.system() == 'Linux':
+    # ubuntu
     #binaries = [("/lib/x86_64-linux-gnu/libusb-1.0.so.0", ".")]
+    # arch linux
     binaries = [("/usr/lib/libusb-1.0.so.0", ".")]
 elif platform.system() == 'Darwin':
     find_brew_libusb_proc = subprocess.Popen(['brew', '--prefix', 'libusb'], stdout=subprocess.PIPE)
@@ -18,11 +21,10 @@ elif platform.system() == 'Darwin':
     binaries = [(libusb_path.rstrip().decode() + "/lib/libusb-1.0.dylib", ".")]
 
 a = Analysis(['combined.py'],
-             pathex=['C:\\Users\\justin\\dev\\desktop-demos'],
              binaries=binaries,
              datas=[],
              hiddenimports=[],
-             hookspath=['HWI/contrib/pyinstaller-hooks'],
+             hookspath=['pyinstaller-hooks'],
              runtime_hooks=[],
              excludes=[],
              win_no_prefer_redirects=False,
@@ -41,7 +43,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='enumerate',
+          name='combined',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

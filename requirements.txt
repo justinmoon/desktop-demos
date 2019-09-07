@@ -2,5 +2,9 @@ cefpython3
 Flask
 hwi
 libusb1
-PyInstaller
-pywebview
+pywebview[qt]
+pywebview[cef]
+
+# pyinstaller.zip is develop branch of pyinstaller
+# containing this fix: https://github.com/r0x0r/pywebview/issues/346#issuecomment-513567220
+pyinstaller.zip

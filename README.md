@@ -1,36 +1,62 @@
-```
-Exception: WebBrowserInterop.x86.dll not found
-```
+# Desktop Demos
 
-```
-pyinstaller --clean pywebview.py --hidden-import "clr" --add-data "/c/Users/justin/dev/desktop-demos/venv/Lib/site-packages/webview/lib/WebBrowserInterop.x86.dll;./" --onefile --noconsole
-```
-
-## Freezing on Windows
-
-This worked 
-
-```
-pyinstaller --clean pywebview.py --hidden-import "clr" --add-data "WebBrowserInterop.x86.dll;."  --noconsole
-```
-
-after making [this change](https://github.com/r0x0r/pywebview/issues/346#issuecomment-513567220) (was finicky, had to open the file in vscode from command prompt. editing in vscode bash wasn't having any effect...).
-
-After this, I was able to do just. (Leaving the earlier note in just in case.)
-```
-pyinstaller -F pywebview.py
-```
-
-This repo contains 3 demos:
+This repo contains 3 demos demonstrating how to build a native desktop app that displays a web view of a Flask server that can talk to Bitcoin hardware devices. The tricky part is getting the right dependencies installed in the `.spec` files so that all HWI dependencies are available inside the bundled binary.
 
 ## desktop
 
 Runs a flask app as desktop app
 
+### To run on Linux:
+
+```
+# build the binary
+pyinstaller desktop.spec
+# run the binary
+./dist/desktop.spec
+```
+
+### To build for Windows:
+
+```
+# make sure docker is running
+# pull docker container that can builds pyinstaller binaries for windows
+docker pull cdrx/pyinstaller-windows
+# build the binary inside ^^ docker container
+docker run -v "$(pwd):/src/" cdrx/pyinstaller-windows
+```
+
+outputs to `dist/desktop.exe`
+
 ## enumerate
 
 Creates binary that just prints output of HWI enumerate
 
+### Linux:
+
+```
+pyinstaller enumerate.spec
+./dist/enumerate
+```
+
+### Windows:
+
+```
+docker run -v "$(pwd):/src/" cdrx/pyinstaller-windows
+```
+
 ## combined
 
-This combines the other two. Runs a flask app as desktop app which just displays output of HWI enumerate. 
+This combines the `desktop.spec` and `enumerate.spec`: runs a flask app as desktop app which displays output of HWI enumerate. 
+
+### Linux
+
+```
+pyinstaller combined.spec
+./dist/combined
+```
+
+### Windows:
+
+```
+docker run -v "$(pwd):/src/" cdrx/pyinstaller-windows
+```
