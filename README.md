@@ -2,7 +2,7 @@
 
 This repo contains 3 demos demonstrating how to build a native desktop app that displays a web view of a Flask server that can talk to Bitcoin hardware devices. The tricky part is getting the right dependencies installed in the `.spec` files so that all HWI dependencies are available inside the bundled binary.
 
-## Desktop
+# Desktop
 
 Runs a flask app as desktop app
 
@@ -31,7 +31,7 @@ outputs to `dist/windows/desktop.exe`. [Don't yet know how to specify which .spe
 
 TODO
 
-## Enumerate
+# Enumerate
 
 Creates binary that just prints output of HWI enumerate
 
@@ -54,7 +54,7 @@ Outputs to `dist/windows/enumerate.exe`
 
 TODO
 
-## Combined
+# Combined
 
 This combines the `desktop.spec` and `enumerate.spec`: runs a flask app as desktop app which displays output of HWI enumerate. 
 
