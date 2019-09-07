@@ -17,7 +17,7 @@ elif platform.system() == 'Darwin':
     libusb_path = find_brew_libusb_proc.communicate()[0]
     binaries = [(libusb_path.rstrip().decode() + "/lib/libusb-1.0.dylib", ".")]
 
-a = Analysis(['enumerate.py'],
+a = Analysis(['combined.py'],
              pathex=['C:\\Users\\justin\\dev\\desktop-demos'],
              binaries=binaries,
              datas=[],

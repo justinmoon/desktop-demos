@@ -20,3 +20,17 @@ After this, I was able to do just. (Leaving the earlier note in just in case.)
 ```
 pyinstaller -F pywebview.py
 ```
+
+This repo contains 3 demos:
+
+## desktop
+
+Runs a flask app as desktop app
+
+## enumerate
+
+Creates binary that just prints output of HWI enumerate
+
+## combined
+
+This combines the other two. Runs a flask app as desktop app which just displays output of HWI enumerate. 
