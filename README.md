@@ -107,8 +107,6 @@ Outputs to `dist/windows/combined.exe`
 
 ```
 
-# Remove 'pathex' option from desktop.spec
-
 # Install the package dependencies
 pip3 install requirements.txt
 
