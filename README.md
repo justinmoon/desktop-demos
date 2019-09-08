@@ -33,7 +33,7 @@ outputs to `dist/windows/desktop.exe`. [Don't yet know how to specify which .spe
 # Remove 'pathex' option from desktop.spec
 
 # Install the package dependencies
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 
 # Remove Windows webview  .dll files that would inadvertently get picked up by the build process:
 rm /usr/local/lib/python3.7/site-packages/webview/lib/*.dll
@@ -73,7 +73,7 @@ Outputs to `dist/windows/enumerate.exe`
 # Remove pathex option from enumerate.spec
 
 # Install the package dependencies
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 
 # Run pyinstaller:
 pyinstaller enumerate.spec
@@ -108,7 +108,7 @@ Outputs to `dist/windows/combined.exe`
 ```
 
 # Install the package dependencies
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 
 # Remove Windows webview  .dll files that would inadvertently get picked up by the build process:
 rm /usr/local/lib/python3.7/site-packages/webview/lib/*.dll
