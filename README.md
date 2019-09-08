@@ -28,8 +28,25 @@ docker run -v "$(pwd):/src/" --entrypoint /bin/sh cdrx/pyinstaller-windows -c "r
 outputs to `dist/windows/desktop.exe`. [Don't yet know how to specify which .spec to use](https://github.com/cdrx/docker-pyinstaller/issues/63), so I tell the docker conatiner to delete the other ones before starting. BTW this also deletes the .spec files locally, so you have to recover them from git: `git checkout -- combined.spec enumerate.spec`. Terrible hack!
 
 ### To build for Mac:
+```
 
-TODO
+# Remove 'pathex' option from desktop.spec
+
+# Install the package dependencies
+pip3 install requirements.txt
+
+# Remove Windows webview  .dll files that would inadvertently get picked up by the build process:
+rm /usr/local/lib/python3.7/site-packages/webview/lib/*.dll
+
+# Run pyinstaller:
+pyinstaller desktop.spec
+
+# Outputs to dist/desktop 
+
+# To run: 
+./dist/desktop
+```
+
 
 # Enumerate
 
@@ -52,7 +69,20 @@ Outputs to `dist/windows/enumerate.exe`
 
 ### Mac:
 
-TODO
+```
+# Remove pathex option from enumerate.spec
+
+# Install the package dependencies
+pip3 install requirements.txt
+
+# Run pyinstaller:
+pyinstaller enumerate.spec
+
+# Outputs to dist/enumerate 
+
+# To run: 
+./dist/enumerate
+```
 
 # Combined
 
@@ -75,4 +105,21 @@ Outputs to `dist/windows/combined.exe`
 
 ### Mac:
 
-TODO
+```
+
+# Install the package dependencies
+pip3 install requirements.txt
+
+# Remove Windows webview  .dll files that would inadvertently get picked up by the build process:
+rm /usr/local/lib/python3.7/site-packages/webview/lib/*.dll
+
+# Run pyinstaller:
+pyinstaller combined.spec
+
+# Outputs to dist/combined 
+
+# To run: 
+./dist/combined
+```
+
+
